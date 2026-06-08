@@ -28,6 +28,10 @@ public class FavoritesManager {
         return getFavorites().contains(gameId);
     }
 
+    public int getFavoritesCount() {
+        return getFavorites().size();
+    }
+
     private Set<String> getFavorites() {
         return new HashSet<>(sharedPreferences.getStringSet(KEY_FAVORITES, new HashSet<>()));
     }

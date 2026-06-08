@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bg_main">#0B0C10</color>
-    <color name="bg_surface">#161820</color>
-    <color name="purple_accent">#5C62F5</color>
-    <color name="purple_light">#23263B</color>
-    <color name="text_primary">#FFFFFF</color>
-    <color name="text_muted">#808191</color>
+    <!-- Light mode (day) -->
+    <color name="bg_main">#F3F2FC</color>
+    <color name="bg_surface">#FFFFFF</color>
+    <color name="bg_dock">#E8E7F5</color>
+    <color name="stroke_subtle">#DDDCEE</color>
+    <color name="purple_accent">#6A5AE0</color>
+    <color name="purple_light">#EEEAFA</color>
+    <color name="text_primary">#0D0C14</color>
+    <color name="text_muted">#6B6B78</color>
     <color name="accent_red">#FF4A4A</color>
 </resources>

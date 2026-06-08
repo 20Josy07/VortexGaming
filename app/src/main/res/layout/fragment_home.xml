@@ -1,77 +1,331 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/swipe_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_main">
 
-    <androidx.core.widget.NestedScrollView
+    <!-- Header -->
+    <TextView
+        android:id="@+id/tvTitleHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Discover"
+        android:textColor="@color/text_primary"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:letterSpacing="-0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnNotificationBell"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bg_chip_default"
+        android:src="@drawable/ic_bell"
+        android:contentDescription="Notifications"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitleHome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTitleHome"
+        app:tint="@color/text_primary" />
+
+    <!-- Search trigger (tap → navigate to SearchFragment) -->
+    <LinearLayout
+        android:id="@+id/searchCard"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/bg_search_rounded"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="14dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toBottomOf="@id/tvTitleHome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_search"
+            android:alpha="0.5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Search games…"
+            android:textColor="@color/text_muted"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- Genre chips -->
+    <HorizontalScrollView
+        android:id="@+id/genreScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/searchCard">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/chipGroupGenres"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="4dp" />
+    </HorizontalScrollView>
 
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/search_view"
+    <!-- Scrollable content -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/genreScrollView">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:queryHint="Buscar juegos..."
-                app:iconifiedByDefault="false" />
+                android:orientation="vertical"
+                android:paddingBottom="110dp"
+                android:baselineAligned="false">
 
-            <!-- Trending Now -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/trending_now"
-                android:textColor="@color/text_primary"
-                android:textSize="18sp"
-                android:layout_marginTop="16dp"/>
+                <!-- ── FEATURED HERO ─────────────────────────────── -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardFeatured"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="12dp"
+                    android:visibility="gone"
+                    app:cardCornerRadius="22dp"
+                    app:cardElevation="8dp"
+                    app:strokeWidth="0dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_trending"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-            <!-- Top Rated -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/top_rated"
-                android:textColor="@color/text_primary"
-                android:textSize="18sp"
-                android:layout_marginTop="24dp"/>
+                        <ImageView
+                            android:id="@+id/ivFeaturedBg"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_top_rated"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/gradient_bottom_dark" />
 
-            <!-- Upcoming Releases -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/upcoming_releases"
-                android:textColor="@color/text_primary"
-                android:textSize="18sp"
-                android:layout_marginTop="24dp"/>
+                        <!-- Top badges -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top|start"
+                            android:layout_margin="12dp"
+                            android:orientation="horizontal">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_upcoming"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_nav_item_active"
+                                android:paddingHorizontal="10dp"
+                                android:paddingVertical="4dp"
+                                android:text="🔥 Trending"
+                                android:textColor="#FFFFFF"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
 
+                            <TextView
+                                android:id="@+id/tvFeaturedMeta"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
+                                android:background="@drawable/bg_metacritic_badge"
+                                android:paddingHorizontal="10dp"
+                                android:paddingVertical="4dp"
+                                android:textColor="#FFFFFF"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:visibility="gone" />
+                        </LinearLayout>
 
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                        <!-- Bottom info -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:orientation="vertical"
+                            android:padding="14dp">
+
+                            <TextView
+                                android:id="@+id/tvFeaturedTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textColor="#FFFFFF"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvFeaturedRating"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:textColor="#FFD700"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </FrameLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- ── TRENDING NOW ───────────────────────────────── -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="20dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Trending Now"
+                            android:textColor="@color/text_primary"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvSeeAllNew"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="see all"
+                            android:textColor="@color/purple_accent"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvNewGames"
+                        android:layout_width="match_parent"
+                        android:layout_height="215dp"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="20dp"
+                        android:clipToPadding="false"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                </LinearLayout>
+
+                <!-- ── TOP RATED ─────────────────────────────────── -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="20dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Top Rated"
+                            android:textColor="@color/text_primary"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvSeeAllTop"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="see all"
+                            android:textColor="@color/purple_accent"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvTopRated"
+                        android:layout_width="match_parent"
+                        android:layout_height="215dp"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="20dp"
+                        android:clipToPadding="false"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                </LinearLayout>
+
+                <!-- ── COMING SOON ───────────────────────────────── -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="20dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Coming Soon"
+                            android:textColor="@color/text_primary"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvSeeAllFast"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="see all"
+                            android:textColor="@color/purple_accent"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvFastLaunch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:paddingHorizontal="20dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:spanCount="2" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

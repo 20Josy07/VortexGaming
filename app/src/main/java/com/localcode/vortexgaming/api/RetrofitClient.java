@@ -4,8 +4,14 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    private static final String BASE_URL = "https://api.rawg.io/api/";
-    private static Retrofit retrofit = null;
+    private static final String BASE_URL       = "https://api.rawg.io/api/";
+    private static final String AUTH_BASE_URL  = "https://reqres.in/api/";
+    // 10.0.2.2 = emulador Android | 192.168.1.24 = dispositivo físico (tu IP local)
+    public  static final String VORTEX_BASE_URL = "http://192.168.1.24:3000/";
+
+    private static Retrofit retrofit       = null;
+    private static Retrofit authRetrofit   = null;
+    private static Retrofit vortexRetrofit = null;
 
     public static Retrofit getClient() {
         if (retrofit == null) {
@@ -15,5 +21,30 @@ public class RetrofitClient {
                     .build();
         }
         return retrofit;
+    }
+
+    public static Retrofit getAuthClient() {
+        if (authRetrofit == null) {
+            authRetrofit = new Retrofit.Builder()
+                    .baseUrl(AUTH_BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return authRetrofit;
+    }
+
+    public static Retrofit getVortexClient() {
+        if (vortexRetrofit == null) {
+            vortexRetrofit = new Retrofit.Builder()
+                    .baseUrl(VORTEX_BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return vortexRetrofit;
+    }
+
+    /** Llama esto si cambias VORTEX_BASE_URL en tiempo de ejecución */
+    public static void resetVortexClient() {
+        vortexRetrofit = null;
     }
 }

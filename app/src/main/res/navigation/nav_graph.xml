@@ -7,7 +7,20 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.localcode.vortexgaming.HomeFragment"
-        android:label="Home" />
+        android:label="Home">
+        <action
+            android:id="@+id/action_home_to_search"
+            app:destination="@id/navigation_search"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_down" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.localcode.vortexgaming.SearchFragment"
+        android:label="Search" />
 
     <fragment
         android:id="@+id/navigation_request"
@@ -17,5 +30,6 @@
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.localcode.vortexgaming.ProfileFragment"
-        android:label="Profile" />
+        android:label="Settings" />
+
 </navigation>
