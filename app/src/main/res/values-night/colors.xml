@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark mode (night) -->
+    <color name="bg_main">#0D0C14</color>
+    <color name="bg_surface">#1A1926</color>
+    <color name="bg_dock">#0F0E17</color>
+    <color name="stroke_subtle">#2A2838</color>
+    <color name="purple_accent">#6A5AE0</color>
+    <color name="purple_light">#23263B</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_muted">#8E8E93</color>
+    <color name="accent_red">#FF4A4A</color>
+</resources>
