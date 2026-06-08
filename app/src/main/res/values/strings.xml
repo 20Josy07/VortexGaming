@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">VortexGaming</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_request">Request</string>
+    <string name="nav_profile">Profile</string>
+    <string name="trending_now">Trending Now</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="upcoming_releases">Upcoming Releases</string>
+</resources>

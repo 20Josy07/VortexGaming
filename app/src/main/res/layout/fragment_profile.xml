@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_main"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/card_premium_shape"
+        android:backgroundTint="@color/bg_surface" />
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/switch_theme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Tema Oscuro"
+        android:textColor="@color/text_primary" />
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/accent_red"
+        android:text="Cerrar Sesión" />
+
+</LinearLayout>
