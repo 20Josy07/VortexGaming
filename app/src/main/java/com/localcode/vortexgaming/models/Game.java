@@ -5,4 +5,5 @@ public class Game {
     public String name;
     public String background_image;
     public double rating;
+    public String description;
 }

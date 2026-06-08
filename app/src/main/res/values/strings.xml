@@ -6,4 +6,5 @@
     <string name="trending_now">Trending Now</string>
     <string name="top_rated">Top Rated</string>
     <string name="upcoming_releases">Upcoming Releases</string>
+    <string name="rawg_api_key">ccd5981de43448c0bc3cc7a5a14af5c8</string>
 </resources>

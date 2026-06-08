@@ -38,6 +38,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), GameDetailActivity.class);
+            intent.putExtra("game_id", game.id);
             intent.putExtra("game_title", game.name);
             intent.putExtra("game_image", game.background_image);
             v.getContext().startActivity(intent);
