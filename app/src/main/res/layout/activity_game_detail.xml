@@ -42,7 +42,7 @@
             android:background="@drawable/bg_circle_dark"
             android:src="@drawable/ic_arrow_back"
             android:padding="10dp"
-            android:contentDescription="Back" />
+            android:contentDescription="Atrás" />
 
         <Space
             android:layout_width="0dp"
@@ -56,7 +56,7 @@
             android:background="@drawable/bg_circle_dark"
             android:src="@drawable/ic_heart"
             android:padding="10dp"
-            android:contentDescription="Favorite" />
+            android:contentDescription="Favorito" />
 
     </LinearLayout>
 
@@ -198,7 +198,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="22dp"
-                android:text="Screenshots"
+                android:text="Capturas de pantalla"
                 android:textColor="@color/text_primary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -231,7 +231,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="22dp"
-                android:text="About"
+                android:text="Acerca del juego"
                 android:textColor="@color/text_primary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -255,7 +255,7 @@
         android:layout_height="56dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Notify me on launch"
+        android:text="Notificarme al lanzar"
         android:textAllCaps="false"
         android:textColor="@color/text_primary"
         android:textSize="16sp"

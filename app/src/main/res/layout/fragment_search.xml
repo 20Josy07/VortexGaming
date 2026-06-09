@@ -26,7 +26,7 @@
             android:background="@drawable/bg_chip_default"
             android:src="@drawable/ic_arrow_back"
             android:padding="10dp"
-            android:contentDescription="Back"
+            android:contentDescription="Atrás"
             app:tint="@color/text_primary" />
 
         <com.google.android.material.card.MaterialCardView
@@ -46,7 +46,7 @@
                 android:layout_height="match_parent"
                 app:iconifiedByDefault="false"
                 app:queryBackground="@android:color/transparent"
-                app:queryHint="Search games, genres…" />
+                app:queryHint="Buscar juegos, géneros…" />
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 
@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Type to search games"
+            android:text="Escribe para buscar"
             android:textColor="@color/text_muted"
             android:textSize="16sp" />
     </LinearLayout>

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="Discover"
+        android:text="Descubre"
         android:textColor="@color/text_primary"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -37,7 +37,7 @@
             android:layout_height="40dp"
             android:background="@drawable/bg_chip_default"
             android:src="@drawable/ic_bell"
-            android:contentDescription="Notifications"
+            android:contentDescription="Notificaciones"
             android:padding="8dp"
             app:tint="@color/text_primary" />
 
@@ -82,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Search games…"
+            android:text="Buscar juegos…"
             android:textColor="@color/text_muted"
             android:textSize="14sp" />
     </LinearLayout>
@@ -175,7 +175,7 @@
                                 android:background="@drawable/bg_nav_item_active"
                                 android:paddingHorizontal="10dp"
                                 android:paddingVertical="4dp"
-                                android:text="🔥 Trending"
+                                android:text="🔥 Tendencia"
                                 android:textColor="#FFFFFF"
                                 android:textSize="11sp"
                                 android:textStyle="bold" />
@@ -281,7 +281,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Trending Now"
+                            android:text="Tendencias"
                             android:textColor="@color/text_primary"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -290,7 +290,7 @@
                             android:id="@+id/tvSeeAllNew"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="see all"
+                            android:text="ver todo"
                             android:textColor="@color/purple_accent"
                             android:textSize="13sp" />
                     </LinearLayout>
@@ -325,7 +325,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Top Rated"
+                            android:text="Mejor valorados"
                             android:textColor="@color/text_primary"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -334,7 +334,7 @@
                             android:id="@+id/tvSeeAllTop"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="see all"
+                            android:text="ver todo"
                             android:textColor="@color/purple_accent"
                             android:textSize="13sp" />
                     </LinearLayout>
@@ -369,7 +369,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Coming Soon"
+                            android:text="Próximos lanzamientos"
                             android:textColor="@color/text_primary"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -378,7 +378,7 @@
                             android:id="@+id/tvSeeAllFast"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="see all"
+                            android:text="ver todo"
                             android:textColor="@color/purple_accent"
                             android:textSize="13sp" />
                     </LinearLayout>

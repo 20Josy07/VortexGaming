@@ -12,7 +12,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="24dp"
-        android:paddingBottom="110dp">
+        android:paddingBottom="110dp"
+        android:clipChildren="false"
+        android:clipToPadding="false">
 
         <!-- ── Header ──────────────────────────────────────────────── -->
         <TextView
@@ -39,19 +41,27 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="8dp">
 
             <!-- Circles + connectors -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="6dp">
 
                 <FrameLayout
                     android:id="@+id/stepCircle1"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
                     android:background="@drawable/bg_step_active">
                     <TextView
                         android:id="@+id/stepNum1"
@@ -60,7 +70,7 @@
                         android:layout_gravity="center"
                         android:text="1"
                         android:textColor="#FFFFFF"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
                 </FrameLayout>
 
@@ -73,8 +83,8 @@
 
                 <FrameLayout
                     android:id="@+id/stepCircle2"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
                     android:background="@drawable/bg_step_inactive">
                     <TextView
                         android:id="@+id/stepNum2"
@@ -83,7 +93,7 @@
                         android:layout_gravity="center"
                         android:text="2"
                         android:textColor="@color/text_muted"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
                 </FrameLayout>
 
@@ -96,8 +106,8 @@
 
                 <FrameLayout
                     android:id="@+id/stepCircle3"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
                     android:background="@drawable/bg_step_inactive">
                     <TextView
                         android:id="@+id/stepNum3"
@@ -106,7 +116,7 @@
                         android:layout_gravity="center"
                         android:text="3"
                         android:textColor="@color/text_muted"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
                 </FrameLayout>
             </LinearLayout>

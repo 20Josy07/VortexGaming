@@ -1,15 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_main">
+    android:background="@drawable/bg_splash">
 
-    <ImageView
-        android:id="@+id/img_logo"
+    <!-- ── Concentric glow rings + logo (packed-chain head) ──────────── -->
+    <FrameLayout
+        android:id="@+id/logoContainer"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvAppName"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintVertical_bias="0.40">
+
+        <!-- Outer glow ring (full FrameLayout size) -->
+        <View
+            android:id="@+id/glowOuter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_splash_ring_outer" />
+
+        <!-- Mid glow ring -->
+        <View
+            android:id="@+id/glowMid"
+            android:layout_width="158dp"
+            android:layout_height="158dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_splash_ring_mid" />
+
+        <!-- Logo card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/logoCard"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="44dp"
+            app:cardElevation="20dp"
+            app:strokeColor="#6B56D6"
+            app:strokeWidth="1.5dp"
+            app:cardBackgroundColor="#130F26">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_launcher_round"
+                android:scaleType="centerCrop"
+                android:contentDescription="Logotipo" />
+        </com.google.android.material.card.MaterialCardView>
+
+    </FrameLayout>
+
+    <!-- App name (chain member 2) -->
+    <TextView
+        android:id="@+id/tvAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:text="VortexGaming"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.04"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoContainer"
+        app:layout_constraintBottom_toTopOf="@id/tvTagline" />
+
+    <!-- Tagline (chain tail) -->
+    <TextView
+        android:id="@+id/tvTagline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Tu universo de juegos"
+        android:textColor="#60FFFFFF"
+        android:textSize="13sp"
+        android:letterSpacing="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAppName"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Progress track (bottom area) -->
+    <FrameLayout
+        android:id="@+id/progressTrack"
         android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerInParent="true"
-        android:src="@mipmap/ic_launcher"
-        android:contentDescription="Logo" />
+        android:layout_height="3dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_progress_track_splash"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvVersion">
 
-</RelativeLayout>
+        <View
+            android:id="@+id/progressFill"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_progress_fill_splash" />
+    </FrameLayout>
+
+    <!-- Version -->
+    <TextView
+        android:id="@+id/tvVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="v 1.0"
+        android:textColor="#2CFFFFFF"
+        android:textSize="11sp"
+        android:letterSpacing="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

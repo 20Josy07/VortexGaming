@@ -17,4 +17,14 @@
     </style>
 
     <style name="Theme.VortexGaming" parent="Base.Theme.VortexGaming" />
+
+    <!-- Splash: always dark regardless of system theme, no flash -->
+    <style name="Theme.VortexGaming.Splash" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">false</item>
+    </style>
 </resources>

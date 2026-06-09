@@ -180,7 +180,7 @@ public class GameDetailActivity extends AppCompatActivity {
                 trailerContainer.setOnClickListener(v -> {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(finalVideoUrl));
                     intent.setDataAndType(Uri.parse(finalVideoUrl), "video/mp4");
-                    startActivity(Intent.createChooser(intent, "Play trailer"));
+                    startActivity(Intent.createChooser(intent, "Reproducir tráiler"));
                 });
             }
             @Override public void onFailure(@NonNull Call<MovieResponse> call, @NonNull Throwable t) {}

@@ -184,11 +184,7 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         if (!featuredGames.isEmpty()) startCarousel();
-    }
 
-    @Override
-    public void onResume() {
-        super.onResume();
         // Refresh badge whenever the user returns to this fragment
         if (notifStore != null) updateBadge();
 
