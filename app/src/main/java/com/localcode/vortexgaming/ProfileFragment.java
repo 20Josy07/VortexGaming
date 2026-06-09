@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.os.Looper;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
+import com.google.android.material.transition.MaterialFadeThrough;
 import com.google.android.material.materialswitch.MaterialSwitch;
 import com.localcode.vortexgaming.utils.ContentFilter;
 import com.localcode.vortexgaming.utils.FavoritesManager;
@@ -20,6 +21,13 @@ import com.localcode.vortexgaming.utils.SessionManager;
 import com.localcode.vortexgaming.views.auth.LoginActivity;
 
 public class ProfileFragment extends Fragment {
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setEnterTransition(new MaterialFadeThrough());
+        setExitTransition(new MaterialFadeThrough());
+    }
 
     @Nullable
     @Override

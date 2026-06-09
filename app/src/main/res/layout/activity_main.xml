@@ -135,7 +135,7 @@
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_nav_profile"
+                        android:src="@drawable/ic_nav_settings"
                         app:tint="@color/text_muted" />
                 </FrameLayout>
 

@@ -141,6 +141,18 @@ public class MainActivity extends AppCompatActivity {
         setLabelActive(labelHome,    destinationId == R.id.navigation_home);
         setLabelActive(labelRequest, destinationId == R.id.navigation_request);
         setLabelActive(labelProfile, destinationId == R.id.navigation_profile);
+
+        // Bounce the active icon
+        ImageView activeIconView = destinationId == R.id.navigation_home    ? iconHome
+                                 : destinationId == R.id.navigation_request ? iconRequest
+                                 : iconProfile;
+        activeIconView.animate().scaleX(0f).scaleY(0f).setDuration(0)
+                .withEndAction(() ->
+                    activeIconView.animate().scaleX(1.3f).scaleY(1.3f).setDuration(150)
+                            .withEndAction(() ->
+                                activeIconView.animate().scaleX(1f).scaleY(1f).setDuration(120).start())
+                            .start())
+                .start();
     }
 
     private void setLabelActive(TextView label, boolean active) {
