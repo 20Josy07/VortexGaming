@@ -6,8 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
     private static final String BASE_URL       = "https://api.rawg.io/api/";
     private static final String AUTH_BASE_URL  = "https://reqres.in/api/";
-    // 10.0.2.2 = emulador Android | 192.168.1.24 = dispositivo físico (tu IP local)
-    public  static final String VORTEX_BASE_URL = "http://192.168.1.24:3000/";
+    public  static final String VORTEX_BASE_URL = "https://vortexgaming-api-production.up.railway.app/";
 
     private static Retrofit retrofit       = null;
     private static Retrofit authRetrofit   = null;
