@@ -25,8 +25,10 @@ import com.localcode.vortexgaming.models.Game;
 import com.localcode.vortexgaming.models.GameResponse;
 import com.localcode.vortexgaming.models.Genre;
 import com.localcode.vortexgaming.models.GenreResponse;
+import com.localcode.vortexgaming.models.NotificationItem;
 import com.localcode.vortexgaming.utils.ContentFilter;
 import com.localcode.vortexgaming.utils.NotificationHelper;
+import com.localcode.vortexgaming.utils.NotificationsStore;
 import com.localcode.vortexgaming.views.details.GameDetailActivity;
 
 import java.util.List;
@@ -36,6 +38,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
+
+    private TextView tvBadge;
+    private NotificationsStore notifStore;
 
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView rvNewGames, rvTopRated, rvFastLaunch;
@@ -66,10 +71,16 @@ public class HomeFragment extends Fragment {
         tvFeaturedRating   = view.findViewById(R.id.tvFeaturedRating);
         tvFeaturedMeta     = view.findViewById(R.id.tvFeaturedMeta);
 
-        // Notification bell
-        view.findViewById(R.id.btnNotificationBell).setOnClickListener(v ->
-                NotificationHelper.show(requireContext(), NotificationHelper.ID_BELL,
-                        "VortexGaming", "¡Descubre los últimos lanzamientos de juegos!"));
+        // Notification bell + badge
+        notifStore = new NotificationsStore(requireContext());
+        tvBadge = view.findViewById(R.id.tvBadge);
+        updateBadge();
+
+        view.findViewById(R.id.btnNotificationBell).setOnClickListener(v -> {
+            NotificationsSheet sheet = new NotificationsSheet();
+            sheet.setOnReadListener(this::updateBadge);
+            sheet.show(getParentFragmentManager(), "notifs");
+        });
 
         // Search bar → navigate to SearchFragment
         view.findViewById(R.id.searchCard).setOnClickListener(v ->
@@ -97,6 +108,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        tvBadge = null;
         swipeRefreshLayout = null;
         rvNewGames = null;
         rvTopRated = null;
@@ -138,15 +150,20 @@ public class HomeFragment extends Fragment {
         chip.setTextSize(12f);
         chip.setTypeface(null, Typeface.BOLD);
         chip.setPadding(dp(14), dp(7), dp(14), dp(7));
-        chip.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white));
+        // Active chip: always white text on purple. Inactive: theme-aware text on surface
+        chip.setTextColor(ContextCompat.getColor(requireContext(),
+                isActive ? R.color.chip_active_text : R.color.text_muted));
         chip.setBackground(ContextCompat.getDrawable(requireContext(),
                 isActive ? R.drawable.bg_chip_active : R.drawable.bg_chip_default));
         if (isActive) activeChip = chip;
 
         chip.setOnClickListener(v -> {
-            if (activeChip != null)
+            if (activeChip != null) {
                 activeChip.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.bg_chip_default));
+                activeChip.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_muted));
+            }
             chip.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.bg_chip_active));
+            chip.setTextColor(ContextCompat.getColor(requireContext(), R.color.chip_active_text));
             activeChip = chip;
             selectedGenre = genreId;
             fetchData();
@@ -170,8 +187,15 @@ public class HomeFragment extends Fragment {
                         if (!isViewReady()) return;
                         if (r.isSuccessful() && r.body() != null && !r.body().results.isEmpty()) {
                             List<Game> list = ContentFilter.apply(requireContext(), r.body().results);
-                            if (!list.isEmpty()) bindFeatured(list.get(0));
-                            if (list.size() > 1) rvNewGames.setAdapter(new GameAdapter(list.subList(1, list.size())));
+                            if (!list.isEmpty()) {
+                                bindFeatured(list.get(0));
+                                addGameNotification(list.get(0), "trending");
+                            }
+                            if (list.size() > 1) {
+                                List<Game> rest = list.subList(1, list.size());
+                                rvNewGames.setAdapter(new GameAdapter(rest));
+                                if (!rest.isEmpty()) addGameNotification(rest.get(0), "release");
+                            }
                         }
                     }
                     @Override
@@ -201,6 +225,26 @@ public class HomeFragment extends Fragment {
                     }
                     @Override public void onFailure(@NonNull Call<GameResponse> c, @NonNull Throwable t) {}
                 });
+    }
+
+    private void updateBadge() {
+        if (tvBadge == null) return;
+        int count = notifStore.getUnreadCount();
+        if (count == 0) {
+            tvBadge.setVisibility(View.GONE);
+        } else {
+            tvBadge.setVisibility(View.VISIBLE);
+            tvBadge.setText(count > 9 ? "9+" : String.valueOf(count));
+        }
+    }
+
+    private void addGameNotification(Game game, String type) {
+        if (game == null || game.name == null) return;
+        String msg = type.equals("trending")
+                ? "Está entre los más jugados ahora mismo"
+                : "Nuevo lanzamiento disponible para explorar";
+        notifStore.add(new NotificationItem("game_" + game.id, game.name, msg, type));
+        updateBadge();
     }
 
     private void bindFeatured(Game game) {

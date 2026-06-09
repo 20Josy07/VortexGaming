@@ -136,7 +136,8 @@
                         android:src="@drawable/ic_arrow_back"
                         android:padding="9dp"
                         android:rotation="0"
-                        android:contentDescription="Cambiar juego" />
+                        android:contentDescription="Cambiar juego"
+                        app:tint="@color/text_primary" />
                 </LinearLayout>
 
                 <!-- Divider -->

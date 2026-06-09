@@ -26,7 +26,8 @@
             android:background="@drawable/bg_chip_default"
             android:src="@drawable/ic_arrow_back"
             android:padding="10dp"
-            android:contentDescription="Back" />
+            android:contentDescription="Back"
+            app:tint="@color/text_primary" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
@@ -65,7 +66,8 @@
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:src="@drawable/ic_search"
-            android:alpha="0.25" />
+            android:alpha="0.25"
+            app:tint="@color/text_primary" />
 
         <TextView
             android:id="@+id/tvHintMessage"

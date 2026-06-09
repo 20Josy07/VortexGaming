@@ -10,4 +10,8 @@
     <color name="text_primary">#0D0C14</color>
     <color name="text_muted">#6B6B78</color>
     <color name="accent_red">#FF4A4A</color>
+    <!-- Nav blur overlay (light) -->
+    <color name="nav_overlay">#B0E8E7F5</color>
+    <!-- Chip text on colored bg (always white) -->
+    <color name="chip_active_text">#FFFFFF</color>
 </resources>

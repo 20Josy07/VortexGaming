@@ -28,7 +28,7 @@
         android:background="@drawable/bg_nav_blur"
         android:clipToOutline="true"
         android:elevation="16dp"
-        app:blurOverlayColor="#CC0F0E17"
+        app:blurOverlayColor="@color/nav_overlay"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">

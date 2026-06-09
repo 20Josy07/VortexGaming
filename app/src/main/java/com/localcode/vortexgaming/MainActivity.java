@@ -126,16 +126,17 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         navController.navigate(destinationId, null, options);
 
-        int active   = ContextCompat.getColor(this, R.color.text_primary);
-        int inactive = ContextCompat.getColor(this, R.color.text_muted);
+        // Active icon is always white (on the purple pill), inactive is theme-aware muted
+        int activeIcon  = ContextCompat.getColor(this, R.color.chip_active_text);
+        int inactiveIcon = ContextCompat.getColor(this, R.color.text_muted);
 
         pillHome.setBackgroundResource(destinationId == R.id.navigation_home ? R.drawable.bg_nav_item_active : 0);
         pillRequest.setBackgroundResource(destinationId == R.id.navigation_request ? R.drawable.bg_nav_item_active : 0);
         pillProfile.setBackgroundResource(destinationId == R.id.navigation_profile ? R.drawable.bg_nav_item_active : 0);
 
-        iconHome.setColorFilter(destinationId == R.id.navigation_home ? active : inactive);
-        iconRequest.setColorFilter(destinationId == R.id.navigation_request ? active : inactive);
-        iconProfile.setColorFilter(destinationId == R.id.navigation_profile ? active : inactive);
+        iconHome.setColorFilter(destinationId == R.id.navigation_home ? activeIcon : inactiveIcon);
+        iconRequest.setColorFilter(destinationId == R.id.navigation_request ? activeIcon : inactiveIcon);
+        iconProfile.setColorFilter(destinationId == R.id.navigation_profile ? activeIcon : inactiveIcon);
 
         setLabelActive(labelHome,    destinationId == R.id.navigation_home);
         setLabelActive(labelRequest, destinationId == R.id.navigation_request);

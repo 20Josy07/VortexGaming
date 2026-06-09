@@ -21,19 +21,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/btnNotificationBell"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+    <!-- Bell + badge wrapper -->
+    <FrameLayout
+        android:id="@+id/bellWrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/bg_chip_default"
-        android:src="@drawable/ic_bell"
-        android:contentDescription="Notifications"
-        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="@id/tvTitleHome"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvTitleHome"
-        app:tint="@color/text_primary" />
+        app:layout_constraintTop_toTopOf="@id/tvTitleHome">
+
+        <ImageButton
+            android:id="@+id/btnNotificationBell"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_chip_default"
+            android:src="@drawable/ic_bell"
+            android:contentDescription="Notifications"
+            android:padding="8dp"
+            app:tint="@color/text_primary" />
+
+        <TextView
+            android:id="@+id/tvBadge"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="top|end"
+            android:background="@drawable/bg_badge"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+    </FrameLayout>
 
     <!-- Search trigger (tap → navigate to SearchFragment) -->
     <LinearLayout
@@ -56,7 +75,8 @@
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:src="@drawable/ic_search"
-            android:alpha="0.5" />
+            android:alpha="0.6"
+            app:tint="@color/text_muted" />
 
         <TextView
             android:layout_width="wrap_content"

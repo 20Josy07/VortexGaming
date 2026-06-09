@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<VortexAuthResponse> call, Throwable t) {
                 btnLogin.setEnabled(true);
                 btnLogin.setText("Iniciar sesión");
-                showError(t.getClass().getSimpleName() + ": " + t.getMessage());
+                showError("No se pudo conectar al servidor.\nVerifica que la API esté corriendo.");
             }
         });
     }

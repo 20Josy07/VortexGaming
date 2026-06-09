@@ -25,8 +25,10 @@ import com.localcode.vortexgaming.models.Game;
 import com.localcode.vortexgaming.models.GameRequestBody;
 import com.localcode.vortexgaming.models.GameRequestResponse;
 import com.localcode.vortexgaming.models.GameResponse;
+import com.localcode.vortexgaming.models.NotificationItem;
 import com.localcode.vortexgaming.utils.ContentFilter;
 import com.localcode.vortexgaming.utils.NotificationHelper;
+import com.localcode.vortexgaming.utils.NotificationsStore;
 import com.localcode.vortexgaming.utils.SessionManager;
 import android.os.Handler;
 import android.os.Looper;
@@ -159,12 +161,19 @@ public class RequestFragment extends Fragment {
 
     private void scheduleNotification(String expansionName) {
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            if (getContext() != null) {
-                NotificationHelper.show(requireContext(),
-                        NotificationHelper.ID_LAUNCH,
-                        "¡Solicitud aprobada!",
-                        expansionName + " ya está disponible para jugar.");
-            }
+            if (getContext() == null || !isAdded()) return;
+            // System notification
+            NotificationHelper.show(requireContext(),
+                    NotificationHelper.ID_LAUNCH,
+                    "¡Solicitud aprobada!",
+                    expansionName + " ya está disponible para jugar.");
+            // In-app notification panel
+            new NotificationsStore(requireContext()).add(new NotificationItem(
+                    "req_" + System.currentTimeMillis(),
+                    "¡Solicitud aprobada!",
+                    expansionName + " ya está disponible para jugar.",
+                    "request"
+            ));
         }, 60_000L);
     }
 
