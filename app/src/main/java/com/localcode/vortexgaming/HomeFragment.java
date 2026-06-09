@@ -128,14 +128,7 @@ public class HomeFragment extends Fragment {
         notifStore = new NotificationsStore(requireContext());
         tvBadge    = view.findViewById(R.id.tvBadge);
         updateBadge();
-        view.findViewById(R.id.btnNotificationBell).setOnClickListener(v -> {
-            v.animate().scaleX(1.28f).scaleY(1.28f).setDuration(120)
-                    .withEndAction(() -> v.animate().scaleX(1f).scaleY(1f).setDuration(110).start())
-                    .start();
-            NotificationsSheet sheet = new NotificationsSheet();
-            sheet.setOnReadListener(this::updateBadge);
-            sheet.show(getParentFragmentManager(), "notifs");
-        });
+        view.findViewById(R.id.btnNotificationBell).setOnClickListener(v -> openNotificationsSheet(v));
 
         // Search bar
         view.findViewById(R.id.searchCard).setOnClickListener(v ->
@@ -191,6 +184,20 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         if (!featuredGames.isEmpty()) startCarousel();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Refresh badge whenever the user returns to this fragment
+        if (notifStore != null) updateBadge();
+
+        // Auto-open sheet when app was launched via a notification tap
+        if (getActivity() instanceof MainActivity) {
+            if (((MainActivity) getActivity()).consumeOpenNotifications()) {
+                openNotificationsSheet(null);
+            }
+        }
     }
 
     @Override
@@ -572,6 +579,22 @@ public class HomeFragment extends Fragment {
     private void stopEverything() {
         stopCarousel();
         cancelAnimators();
+    }
+
+    // ── Notifications sheet ───────────────────────────────────────────────
+    private void openNotificationsSheet(@androidx.annotation.Nullable View bellView) {
+        // Prevent double-open if sheet is already showing
+        if (getParentFragmentManager().findFragmentByTag("notifs") != null) return;
+
+        if (bellView != null) {
+            bellView.animate().scaleX(1.28f).scaleY(1.28f).setDuration(120)
+                    .withEndAction(() -> bellView.animate()
+                            .scaleX(1f).scaleY(1f).setDuration(110).start())
+                    .start();
+        }
+        NotificationsSheet sheet = new NotificationsSheet();
+        sheet.setOnBadgeChangedListener(this::updateBadge);
+        sheet.show(getParentFragmentManager(), "notifs");
     }
 
     // ── Badge ─────────────────────────────────────────────────────────────

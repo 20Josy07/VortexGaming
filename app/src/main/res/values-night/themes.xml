@@ -1,0 +1,18 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.VortexGaming" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/purple_accent</item>
+        <item name="colorPrimaryVariant">@color/purple_accent</item>
+        <item name="colorOnPrimary">@color/chip_active_text</item>
+        <item name="colorSecondary">@color/purple_accent</item>
+        <item name="colorSurface">@color/bg_surface</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="android:colorBackground">@color/bg_main</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <!-- Dark mode: light status bar icons OFF -->
+        <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">false</item>
+    </style>
+
+    <style name="Theme.VortexGaming" parent="Base.Theme.VortexGaming" />
+</resources>

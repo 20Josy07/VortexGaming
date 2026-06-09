@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,14 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingHorizontal="20dp"
         android:paddingTop="24dp"
         android:paddingBottom="110dp">
 
+        <!-- ── Header ──────────────────────────────────────────────── -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Request"
+            android:layout_marginHorizontal="20dp"
+            android:text="Solicitudes"
             android:textColor="@color/text_primary"
             android:textSize="28sp"
             android:textStyle="bold" />
@@ -25,20 +27,139 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="4dp"
-            android:text="Busca un juego y elige su expansión"
+            android:text="Solicita el lanzamiento de una expansión"
             android:textColor="@color/text_muted"
             android:textSize="14sp" />
 
-        <!-- Search bar -->
+        <!-- ── Step indicator ───────────────────────────────────────── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <!-- Circles + connectors -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:id="@+id/stepCircle1"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/bg_step_active">
+                    <TextView
+                        android:id="@+id/stepNum1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="1"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </FrameLayout>
+
+                <View
+                    android:id="@+id/stepLine1"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_weight="1"
+                    android:background="@color/stroke_subtle" />
+
+                <FrameLayout
+                    android:id="@+id/stepCircle2"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/bg_step_inactive">
+                    <TextView
+                        android:id="@+id/stepNum2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="2"
+                        android:textColor="@color/text_muted"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </FrameLayout>
+
+                <View
+                    android:id="@+id/stepLine2"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_weight="1"
+                    android:background="@color/stroke_subtle" />
+
+                <FrameLayout
+                    android:id="@+id/stepCircle3"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/bg_step_inactive">
+                    <TextView
+                        android:id="@+id/stepNum3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="3"
+                        android:textColor="@color/text_muted"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Labels row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/stepLabel1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Juego"
+                    android:textColor="@color/purple_accent"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/stepLabel2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Expansión"
+                    android:textColor="@color/text_muted"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/stepLabel3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="Solicitar"
+                    android:textColor="@color/text_muted"
+                    android:textSize="11sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ── Search bar ────────────────────────────────────────────── -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="52dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             app:cardBackgroundColor="@color/bg_surface"
-            app:cardCornerRadius="14dp"
+            app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
-            app:strokeColor="@color/stroke_subtle"
+            app:strokeColor="@color/purple_accent"
             app:strokeWidth="1dp">
 
             <androidx.appcompat.widget.SearchView
@@ -47,174 +168,285 @@
                 android:layout_height="match_parent"
                 app:iconifiedByDefault="false"
                 app:queryBackground="@android:color/transparent"
-                app:queryHint="Busca un juego…" />
+                app:queryHint="Busca el título del juego…" />
+
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Search results -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvGameResults"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@color/bg_surface"
-            android:nestedScrollingEnabled="false"
-            android:paddingVertical="4dp"
-            android:visibility="gone" />
-
-        <!-- Selected game card -->
+        <!-- ── Search results dropdown ──────────────────────────────── -->
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardAdditions"
+            android:id="@+id/cardResults"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="4dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/bg_surface"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:strokeColor="@color/stroke_subtle"
+            app:strokeWidth="1dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGameResults"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:paddingVertical="6dp" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ── Empty / guidance state ───────────────────────────────── -->
+        <LinearLayout
+            android:id="@+id/viewEmptyState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="28dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingVertical="32dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🎮"
+                android:textSize="52sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="Busca un juego para empezar"
+                android:textColor="@color/text_primary"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Escribe el nombre en la barra de arriba\ny selecciónalo en los resultados"
+                android:textColor="@color/text_muted"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:lineSpacingExtra="3dp" />
+
+        </LinearLayout>
+
+        <!-- ── Selected game backdrop card ─────────────────────────── -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSelectedGame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
+            android:visibility="gone"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:strokeWidth="0dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="140dp">
+
+                <ImageView
+                    android:id="@+id/ivSelectedGameBackdrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gradient_bottom_dark" />
+
+                <!-- Game title + rating at bottom -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="14dp"
+                    android:paddingBottom="12dp">
+
+                    <TextView
+                        android:id="@+id/tvSelectedGameTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:shadowColor="#88000000"
+                        android:shadowDx="0"
+                        android:shadowDy="1"
+                        android:shadowRadius="3" />
+
+                    <TextView
+                        android:id="@+id/tvSelectedGameRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:textColor="#FFD700"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- ✕ clear button top-right -->
+                <ImageButton
+                    android:id="@+id/btnClearSelection"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/bg_circle_dark"
+                    android:src="@drawable/ic_close"
+                    android:padding="8dp"
+                    android:contentDescription="Cambiar juego"
+                    app:tint="@color/chip_active_text" />
+
+            </FrameLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ── DLC / Expansion section ──────────────────────────────── -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardDlcSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="12dp"
             android:visibility="gone"
             app:cardBackgroundColor="@color/bg_surface"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
-            app:strokeColor="@color/purple_accent"
+            app:strokeColor="@color/stroke_subtle"
             app:strokeWidth="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="18dp">
 
-                <!-- Game header: cover + name + change button -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical">
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="62dp"
-                        android:layout_height="62dp"
-                        app:cardCornerRadius="12dp"
-                        app:cardElevation="0dp"
-                        app:strokeWidth="0dp">
-
-                        <ImageView
-                            android:id="@+id/ivSelectedGameCover"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:background="@color/bg_main" />
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <LinearLayout
+                    <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="14dp"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:text="Expansión / DLC"
+                        android:textColor="@color/text_primary"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Juego seleccionado"
-                            android:textColor="@color/text_muted"
-                            android:textSize="11sp" />
-
-                        <TextView
-                            android:id="@+id/tvSelectedGame"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:maxLines="2"
-                            android:ellipsize="end"
-                            android:textColor="@color/text_primary"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <ImageButton
-                        android:id="@+id/btnClearSelection"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:background="@drawable/bg_chip_default"
-                        android:src="@drawable/ic_arrow_back"
-                        android:padding="9dp"
-                        android:rotation="0"
-                        android:contentDescription="Cambiar juego"
-                        app:tint="@color/text_primary" />
+                    <!-- Loading spinner (shown while fetching DLCs) -->
+                    <ProgressBar
+                        android:id="@+id/progressDlc"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:visibility="gone"
+                        android:indeterminateTint="@color/purple_accent" />
                 </LinearLayout>
 
-                <!-- Divider -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@color/stroke_subtle" />
-
-                <!-- DLC selection -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Expansión / DLC"
+                    android:layout_marginTop="2dp"
+                    android:text="Selecciona la expansión que deseas"
                     android:textColor="@color/text_muted"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:letterSpacing="0.05" />
+                    android:textSize="12sp" />
 
-                <Spinner
-                    android:id="@+id/spinner_expansions"
+                <!-- Material exposed dropdown menu -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilExpansion"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/bg_search_rounded"
-                    android:paddingHorizontal="12dp" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:hint="Elige una expansión…">
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/actvExpansion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:textColor="@color/text_primary"
+                        android:textSize="14sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Empty DLC state -->
+        <!-- ── No DLC available state ────────────────────────────────── -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardNoDlc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="12dp"
             android:visibility="gone"
             app:cardBackgroundColor="@color/bg_surface"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
-            app:strokeWidth="0dp">
+            app:strokeColor="@color/stroke_subtle"
+            app:strokeWidth="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="24dp">
+                android:padding="28dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="😕"
-                    android:textSize="32sp" />
+                    android:textSize="36sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Sin expansiones registradas"
+                    android:layout_marginTop="10dp"
+                    android:text="Sin expansiones disponibles"
+                    android:textColor="@color/text_primary"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Este juego no tiene DLCs registrados"
                     android:textColor="@color/text_muted"
-                    android:textSize="14sp" />
+                    android:textSize="13sp"
+                    android:gravity="center" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- ── Submit button ─────────────────────────────────────────── -->
         <Button
             android:id="@+id/btn_request"
             android:layout_width="match_parent"
             android:layout_height="56dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="24dp"
             android:background="@drawable/bg_button_primary"
             android:backgroundTint="@null"
-            android:text="Notificarme al lanzar"
+            android:enabled="false"
+            android:alpha="0.45"
+            android:text="Selecciona un juego primero"
             android:textAllCaps="false"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
     </LinearLayout>

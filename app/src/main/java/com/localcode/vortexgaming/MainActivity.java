@@ -1,6 +1,7 @@
 package com.localcode.vortexgaming;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -27,6 +28,9 @@ import eightbitlab.com.blurview.RenderScriptBlur;
 
 public class MainActivity extends AppCompatActivity {
 
+    /** True when the app was launched via a notification tap — HomeFragment checks this. */
+    private boolean pendingOpenNotifications = false;
+
     private NavController navController;
     private BlurView customBottomNav;
 
@@ -51,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         customBottomNav = findViewById(R.id.custom_bottom_nav);
         setupNavBlur();
         setupInsets();
-        NotificationHelper.createChannel(this);
+        NotificationHelper.createChannels(this);
         requestNotificationPermission();
         pillHome    = findViewById(R.id.nav_home_pill);
         pillRequest = findViewById(R.id.nav_request_pill);
@@ -77,6 +81,30 @@ public class MainActivity extends AppCompatActivity {
         });
 
         selectTab(R.id.navigation_home);
+
+        // Handle notification deep-link when activity is first created
+        checkOpenNotificationsIntent(getIntent());
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        checkOpenNotificationsIntent(intent);
+    }
+
+    private void checkOpenNotificationsIntent(Intent intent) {
+        if (intent != null && intent.getBooleanExtra("open_notifications", false)) {
+            pendingOpenNotifications = true;
+            intent.removeExtra("open_notifications"); // consume so it doesn't re-trigger
+        }
+    }
+
+    /** Called by HomeFragment in onResume to check if the sheet should auto-open. */
+    public boolean consumeOpenNotifications() {
+        boolean val = pendingOpenNotifications;
+        pendingOpenNotifications = false;
+        return val;
     }
 
     private void setupInsets() {
